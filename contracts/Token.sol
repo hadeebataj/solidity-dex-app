@@ -11,8 +11,16 @@ contract Token {
 
     // address is the key
     mapping(address => uint256) public balanceOf;
+    mapping(address => mapping(address => uint256)) public allowance; // nested mapping
 
+    // an "event" is a way for a smart contract to communicate with external applications or other smart contracts. Events are essentially messages emitted by the smart contract to signal that something specific has occurred within its execution.
     event Transfer(address indexed from, address indexed to, uint256 value);
+
+    event Approval(
+        address indexed owner,
+        address indexed spender,
+        uint256 value
+    );
 
     constructor(
         string memory _name,
@@ -41,6 +49,17 @@ contract Token {
         // Emit Event
         emit Transfer(msg.sender, _to, _value);
 
+        return true;
+    }
+
+    function approve(
+        address _spender,
+        uint256 _value
+    ) public returns (bool success) {
+        require(_spender != address(0));
+        allowance[msg.sender][_spender] = _value;
+
+        emit Approval(msg.sender, _spender, _value);
         return true;
     }
 }
