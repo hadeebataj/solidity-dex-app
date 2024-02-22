@@ -10,7 +10,7 @@ describe("Token", function () {
 
   beforeEach(async () => {
     const Token = await ethers.getContractFactory("Token");
-    token = await Token.deploy("My Token", "RUPC", "1000000");
+    token = await Token.deploy("Mock Rupee Coin", "mRUPC", "1000000");
 
     accounts = await ethers.getSigners();
     deployer = accounts[0];
