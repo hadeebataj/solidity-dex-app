@@ -19,8 +19,8 @@ describe("Token", function () {
   });
 
   describe("Deployment", () => {
-    const name = "My Token";
-    const symbol = "RUPC";
+    const name = "Mock Rupee Coin";
+    const symbol = "mRUPC";
     const decimals = "18";
     const totalSupply = "1000000";
 
