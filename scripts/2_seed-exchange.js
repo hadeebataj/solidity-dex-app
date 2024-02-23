@@ -185,7 +185,7 @@ async function main() {
       .connect(user2)
       .makeOrder(mRUPC.address, tokens(i * 8), mWETH.address, tokens(i * 10));
     result = await transaction.wait();
-    console.log(`Made order from ${user1.address}\n`);
+    console.log(`Made order from ${user2.address}\n`);
 
     // Wait 1 second
     await wait(1);
