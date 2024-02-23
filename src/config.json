@@ -1,0 +1,16 @@
+{
+    "31337": {
+        "exchange": {
+            "address": "0x998abeb3E57409262aE5b751f60747921B33613E"
+        },
+        "mRUPC": {
+            "address": "0x851356ae760d987E095750cCeb3bC6014560891C"
+        },
+        "mDai": {
+            "address": "0xf5059a5D33d5853360D16C683c16e67980206f36"
+        },
+        "mWETH": {
+            "address": "0x95401dc811bb5740090279Ba06cfA8fcF6113778"
+        }
+    }
+}
