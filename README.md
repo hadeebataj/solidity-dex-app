@@ -1,3 +1,11 @@
+# Notes to start
+
+CLI Commands
+`npm run start`
+`npx hardhat node`
+`npx hardhat run --network localhost scripts/1_deploy.js`
+check if the addresses match in config.json
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
