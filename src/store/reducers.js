@@ -36,21 +36,23 @@ const DEFAULT_TOKENS_STATE = {
 };
 
 export const tokens = (state = DEFAULT_TOKENS_STATE, action) => {
+  const symbols = action.symbols || [];
   switch (action.type) {
     case "TOKEN_1_LOADED":
       return {
         ...state,
         loaded: true,
         contract: [...state.contracts, action.token],
-        symbols: [...action.symbols, action.symbol],
+        symbols: [...symbols, action.symbol],
       };
     case "TOKEN_2_LOADED":
       return {
         ...state,
         loaded: true,
         contract: [...state.contracts, action.token],
-        symbols: [...action.symbols, action.symbol],
+        symbols: [...symbols, action.symbol],
       };
+
     default:
       return state;
   }

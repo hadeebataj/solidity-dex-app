@@ -50,7 +50,7 @@ async function main() {
   const receiver = accounts[1];
   let amount = tokens(10000);
 
-  // user1 transfers 10,000 mETH...
+  // user1 transfers 10,000 mWETH...
   let transaction, result;
   transaction = await mWETH.connect(sender).transfer(receiver.address, amount);
   await transaction.wait();

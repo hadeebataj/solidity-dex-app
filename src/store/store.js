@@ -1,19 +1,23 @@
 import thunk from "redux-thunk";
-import { configureStore } from "@reduxjs/toolkit";
+import { composeWithDevTools } from "redux-devtools-extension";
+import { legacy_createStore, combineReducers, applyMiddleware } from "redux";
 
 /* Import Reducers */
 import { provider, tokens, exchange } from "./reducers";
 
-// configureStore or createStore
-const store = configureStore({
-  reducer: {
-    provider,
-    tokens,
-    exchange,
-  },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
-  devTools: process.env.NODE_ENV !== "production",
-  initialState: {},
+const reducer = combineReducers({
+  provider,
+  tokens,
+  exchange,
 });
+const initialState = {};
+const middleware = [thunk];
+
+// configureStore or createStore
+const store = legacy_createStore(
+  reducer,
+  initialState,
+  composeWithDevTools(applyMiddleware(...middleware))
+);
 
 export default store;
