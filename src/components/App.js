@@ -38,7 +38,7 @@ function App() {
     const mWETH = config[chainId].mWETH;
     await loadTokens(provider, [mRUPC.address, mWETH.address], dispatch);
 
-    // Load Exchange Samrt Contract
+    // Load Exchange Smart Contract
     const exchangeConfig = config[chainId].exchange;
     await loadExchange(provider, exchangeConfig.address, dispatch);
   };

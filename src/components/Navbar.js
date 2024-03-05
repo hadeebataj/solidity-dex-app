@@ -35,6 +35,7 @@ const Navbar = () => {
 
       <div className="exchange__header--networks flex">
         <img src={eth} alt="ETH Logo" className="Eth Logo" />
+
         {chainId && (
           <select
             name="networks"
@@ -58,10 +59,18 @@ const Navbar = () => {
         </p>
 
         {account ? (
-          <a href="">
+          <a
+            href={
+              config[chainId]
+                ? `${config[chainId].explorerURL}/address/${account}`
+                : `#`
+            }
+            target="_blank"
+            rel="noreferrer"
+          >
             {account && account.slice(0, 6) + "..." + account.slice(38)}
             <Blockies
-              account={account}
+              seed={account}
               className="identicon"
               size={10}
               scale={3}
