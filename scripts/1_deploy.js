@@ -20,11 +20,11 @@ async function main() {
   await mRUPC.deployed();
   console.log(`mRUPC Token deployed to: ${mRUPC.address}`);
 
-  const mDai = await Token.deploy("Mock Dai", "mRUPC", "1000000");
+  const mDai = await Token.deploy("Mock Dai", "mDai", "1000000");
   await mDai.deployed();
   console.log(`mDai Token deployed to: ${mDai.address}`);
 
-  const mWETH = await Token.deploy("Mock Wrapped Ether", "mRUPC", "1000000");
+  const mWETH = await Token.deploy("Mock Wrapped Ether", "mWETH", "1000000");
   await mWETH.deployed();
   console.log(`mWETH Token deployed to: ${mWETH.address}`);
 

@@ -15,7 +15,7 @@ describe("Exchange", function () {
     const Token = await ethers.getContractFactory("Token");
 
     token1 = await Token.deploy("Mock Rupee Coin", "mRUPC", "1000000");
-    token2 = await Token.deploy("Mock Dai", "mDAI", "1000000");
+    token2 = await Token.deploy("Mock Dai", "mDai", "1000000");
 
     accounts = await ethers.getSigners();
     deployer = accounts[0];

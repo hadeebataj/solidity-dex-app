@@ -73,9 +73,11 @@ contract Exchange {
 
     function depositToken(address _token, uint256 _amount) public {
         // Transfer tokens to exchange
-        Token(_token).transferFrom(msg.sender, address(this), _amount);
+        require(Token(_token).transferFrom(msg.sender, address(this), _amount));
+
         // Update user balance
         tokens[_token][msg.sender] = tokens[_token][msg.sender] + _amount;
+
         // Emit an event
         emit Deposit(_token, msg.sender, _amount, tokens[_token][msg.sender]);
     }
@@ -209,10 +211,6 @@ contract Exchange {
 
         // Execute the trade
         // msg.sender is the user who filled the order, while _user is who created the order
-        require(
-            tokens[_tokenGet][msg.sender] >= _amountGet + _feeAmount,
-            "Insufficient balance"
-        );
         tokens[_tokenGet][msg.sender] -= (_amountGet + _feeAmount);
         tokens[_tokenGet][_user] += _amountGet;
 

@@ -73,7 +73,7 @@ async function main() {
     .connect(user1)
     .depositToken(mRUPC.address, amount);
   await transaction.wait();
-  console.log(`Deposited ${amount} Ether from ${user1.address}\n`);
+  console.log(`Deposited ${amount} tokens from ${user1.address}\n`);
 
   // user2 approves 10,000 mWETH...
   transaction = await mWETH.connect(user2).approve(exchange.address, amount);
@@ -85,7 +85,7 @@ async function main() {
     .connect(user2)
     .depositToken(mWETH.address, amount);
   await transaction.wait();
-  console.log(`Deposited ${amount} Ether from ${user2.address}\n`);
+  console.log(`Deposited ${amount} tokens from ${user2.address}\n`);
 
   ////////////////////////////////////////////////////////////////////////////////////////////////
   // Seed a Cancelled Order
@@ -169,7 +169,7 @@ async function main() {
 
   // user1 makes 10 orders
   for (let i = 1; i <= 10; i++) {
-    exchange
+    transaction = await exchange
       .connect(user1)
       .makeOrder(mWETH.address, tokens(i * 10), mRUPC.address, tokens(i * 8));
     result = await transaction.wait();
@@ -181,7 +181,7 @@ async function main() {
 
   // user2 makes 10 orders
   for (let i = 1; i <= 10; i++) {
-    exchange
+    transaction = await exchange
       .connect(user2)
       .makeOrder(mRUPC.address, tokens(i * 8), mWETH.address, tokens(i * 10));
     result = await transaction.wait();
@@ -192,7 +192,9 @@ async function main() {
   }
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
