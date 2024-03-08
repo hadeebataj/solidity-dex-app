@@ -5,7 +5,6 @@ import EXCHANGE_ABI from "../abis/Exchange.json";
 export const loadProvider = (dispatch) => {
   const connection = new ethers.providers.Web3Provider(window.ethereum);
   dispatch({ type: "PROVIDER_LOADED", connection });
-  console.log(window.ethereum);
 
   return connection;
 };
@@ -13,6 +12,7 @@ export const loadProvider = (dispatch) => {
 export const loadNetwork = async (provider, dispatch) => {
   const { chainId } = await provider.getNetwork();
   dispatch({ type: "NETWORK_LOADED", chainId });
+
   return chainId;
 };
 
@@ -20,13 +20,13 @@ export const loadAccount = async (provider, dispatch) => {
   const accounts = await window.ethereum.request({
     method: "eth_requestAccounts",
   });
-
   const account = ethers.utils.getAddress(accounts[0]);
 
   dispatch({ type: "ACCOUNT_LOADED", account });
 
   let balance = await provider.getBalance(account);
   balance = ethers.utils.formatEther(balance);
+
   dispatch({ type: "ETHER_BALANCE_LOADED", balance });
 
   return account;
@@ -37,12 +37,10 @@ export const loadTokens = async (provider, addresses, dispatch) => {
 
   token = new ethers.Contract(addresses[0], TOKEN_ABI, provider);
   symbol = await token.symbol();
-  console.log(token, symbol);
   dispatch({ type: "TOKEN_1_LOADED", token, symbol });
 
   token = new ethers.Contract(addresses[1], TOKEN_ABI, provider);
   symbol = await token.symbol();
-  console.log(token, symbol);
   dispatch({ type: "TOKEN_2_LOADED", token, symbol });
 
   return token;
@@ -61,7 +59,7 @@ export const subscribeToEvents = (exchange, dispatch) => {
   });
 };
 
-// -----------------------------------------------------------------------
+// ------------------------------------------------------------------------------
 // LOAD USER BALANCES (WALLET & EXCHANGE BALANCES)
 
 export const loadBalances = async (exchange, tokens, account, dispatch) => {
@@ -87,8 +85,8 @@ export const loadBalances = async (exchange, tokens, account, dispatch) => {
   dispatch({ type: "EXCHANGE_TOKEN_2_BALANCE_LOADED", balance });
 };
 
-// -----------------------------------------------------------------------
-// TRANSFER TOKENS (DEPOSIT & WITHDRAWS)\
+// ------------------------------------------------------------------------------
+// TRANSFER TOKENS (DEPOSIT & WITHDRAWS)
 
 export const transferTokens = async (
   provider,
@@ -99,6 +97,7 @@ export const transferTokens = async (
   dispatch
 ) => {
   let transaction;
+
   dispatch({ type: "TRANSFER_REQUEST" });
 
   try {
