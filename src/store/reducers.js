@@ -149,6 +149,7 @@ export const exchange = (state = DEFAULT_EXCHANGE_STATE, action) => {
           isSuccessful: false,
         },
       };
+
     case "NEW_ORDER_SUCCESS":
       // Prevent duplicate orders
       index = state.allOrders.data.findIndex(
@@ -174,6 +175,7 @@ export const exchange = (state = DEFAULT_EXCHANGE_STATE, action) => {
         },
         events: [action.event, ...state.events],
       };
+
     case "NEW_ORDER_FAIL":
       return {
         ...state,
