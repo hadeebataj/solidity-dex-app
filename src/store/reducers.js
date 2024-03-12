@@ -92,7 +92,7 @@ export const exchange = (state = DEFAULT_EXCHANGE_STATE, action) => {
 
     // ------------------------------------------------------------------------------
     // ORDERS LOADED (CANCELLED, FILLED & ALL)
-    case "CANCEL_ORDERS_LOADED":
+    case "CANCELLED_ORDERS_LOADED":
       return {
         ...state,
         cancelledOrders: {
