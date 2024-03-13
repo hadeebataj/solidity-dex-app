@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import config from "../config.json";
-import "../App.css";
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import config from '../config.json';
+import '../App.css';
 
 import {
   loadProvider,
@@ -11,14 +11,15 @@ import {
   loadExchange,
   subscribeToEvents,
   loadAllOrders,
-} from "../store/interactions";
+} from '../store/interactions';
 
-import Navbar from "./Navbar";
-import Markets from "./Markets";
-import Balance from "./Balance";
-import Order from "./Order";
-import OrderBook from "./OrderBook";
-import PriceChart from "./PriceChart";
+import Navbar from './Navbar';
+import Markets from './Markets';
+import Balance from './Balance';
+import Order from './Order';
+import OrderBook from './OrderBook';
+import PriceChart from './PriceChart';
+import Trades from './Trades';
 
 function App() {
   const dispatch = useDispatch();
@@ -31,12 +32,12 @@ function App() {
     const chainId = await loadNetwork(provider, dispatch);
 
     // Reload page when network changes
-    window.ethereum.on("chainChanged", () => {
+    window.ethereum.on('chainChanged', () => {
       window.location.reload();
     });
 
     // Fetch current account & balance from Metamask when changed
-    window.ethereum.on("accountsChanged", () => {
+    window.ethereum.on('accountsChanged', () => {
       loadAccount(provider, dispatch);
     });
 
@@ -82,7 +83,7 @@ function App() {
 
           {/* Transactions */}
 
-          {/* Trades */}
+          <Trades />
 
           <OrderBook />
         </section>
