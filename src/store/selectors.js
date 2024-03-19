@@ -331,8 +331,8 @@ export const priceChartSelector = createSelector(
         o.tokenGive === tokens[0].address || o.tokenGive === tokens[1].address
     );
 
-    // Sort buy orders by date ascending to compare history
-    orders = orders.sort((a, b) => b.timestamp - a.timestamp);
+    // Sort orders by date ascending to compare history
+    orders = orders.sort((a, b) => a.timestamp - b.timestamp);
 
     // Decorate orders - add display attributes
     orders = orders.map((o) => decorateOrder(o, tokens));

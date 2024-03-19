@@ -1,10 +1,10 @@
-const config = require("../src/config.json");
+const config = require('../src/config.json');
 
-const hre = require("hardhat");
+const hre = require('hardhat');
 const ethers = hre.ethers;
 
 const tokens = (n) => {
-  return ethers.utils.parseUnits(n.toString(), "ether");
+  return ethers.utils.parseUnits(n.toString(), 'ether');
 };
 
 const wait = (seconds) => {
@@ -18,29 +18,29 @@ async function main() {
 
   // Fetch network
   const { chainId } = await ethers.provider.getNetwork();
-  console.log("Using chainId:", chainId);
+  console.log('Using chainId:', chainId);
 
   const mRUPC = await ethers.getContractAt(
-    "Token",
+    'Token',
     config[chainId].mRUPC.address
   );
   console.log(`mRUPC Token fetched: ${mRUPC.address}\n`);
 
   const mDai = await ethers.getContractAt(
-    "Token",
+    'Token',
     config[chainId].mDai.address
   );
   console.log(`mDai Token fetched: ${mDai.address}\n`);
 
   const mWETH = await ethers.getContractAt(
-    "Token",
+    'Token',
     config[chainId].mWETH.address
   );
   console.log(`mWETH Token fetched: ${mWETH.address}\n`);
 
   // Fetch the deployed exchange
   const exchange = await ethers.getContractAt(
-    "Exchange",
+    'Exchange',
     config[chainId].exchange.address
   );
   console.log(`Exchange fetched: ${exchange.address}\n`);
@@ -123,7 +123,7 @@ async function main() {
   orderId = result.events[0].args.id;
   transaction = await exchange.connect(user2).fillOrder(orderId);
   result = await transaction.wait();
-  console.log(`Filled order from ${user2.address}\n`);
+  console.log(`Filled order from ${user1.address}\n`);
 
   // Wait 1 second
   await wait(1);
@@ -164,14 +164,14 @@ async function main() {
   await wait(1);
 
   ////////////////////////////////////////////////////////////////////////////////////////////////
-  // Seed Filled Orders
+  // Seed Open Orders
   //
 
   // user1 makes 10 orders
   for (let i = 1; i <= 10; i++) {
     transaction = await exchange
       .connect(user1)
-      .makeOrder(mWETH.address, tokens(i * 10), mRUPC.address, tokens(i * 8));
+      .makeOrder(mWETH.address, tokens(10 * i), mRUPC.address, tokens(10));
     result = await transaction.wait();
     console.log(`Made order from ${user1.address}\n`);
 
@@ -183,7 +183,7 @@ async function main() {
   for (let i = 1; i <= 10; i++) {
     transaction = await exchange
       .connect(user2)
-      .makeOrder(mRUPC.address, tokens(i * 8), mWETH.address, tokens(i * 10));
+      .makeOrder(mRUPC.address, tokens(10), mWETH.address, tokens(10 * i));
     result = await transaction.wait();
     console.log(`Made order from ${user2.address}\n`);
 
