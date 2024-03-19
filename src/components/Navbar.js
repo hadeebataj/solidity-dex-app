@@ -1,10 +1,10 @@
-import { useSelector } from "react-redux";
-import logo from "../assets/logo.png";
-import eth from "../assets/eth.svg";
-import Blockies from "react-blockies";
-import { useDispatch } from "react-redux";
-import { loadAccount } from "../store/interactions";
-import config from "../config.json";
+import { useSelector } from 'react-redux';
+import logo from '../assets/logo.png';
+import eth from '../assets/eth.svg';
+import Blockies from 'react-blockies';
+import { useDispatch } from 'react-redux';
+import { loadAccount } from '../store/interactions';
+import config from '../config.json';
 
 const Navbar = () => {
   const provider = useSelector((state) => state.provider.connection);
@@ -21,7 +21,7 @@ const Navbar = () => {
 
   const networkHandler = async (e) => {
     await window.ethereum.request({
-      method: "wallet_switchEthereumChain",
+      method: 'wallet_switchEthereumChain',
       params: [{ chainId: e.target.value }],
     });
   };
@@ -48,6 +48,7 @@ const Navbar = () => {
             </option>
             <option value="0x7A69">Localhost</option>
             <option value="0xaa36a7">Sepolia</option>
+            <option value="0x13881">Mumbai</option>
           </select>
         )}
       </div>
@@ -55,7 +56,7 @@ const Navbar = () => {
       <div className="exchange__header--account flex">
         <p>
           <small>My Balance</small>
-          {Number(balance) ? parseFloat(Number(balance)).toFixed(4) : "0 ETH"}
+          {Number(balance) ? parseFloat(Number(balance)).toFixed(4) : '0 ETH'}
         </p>
 
         {account ? (
@@ -68,7 +69,7 @@ const Navbar = () => {
             target="_blank"
             rel="noreferrer"
           >
-            {account && account.slice(0, 6) + "..." + account.slice(38)}
+            {account && account.slice(0, 6) + '...' + account.slice(38)}
             <Blockies
               seed={account}
               className="identicon"
