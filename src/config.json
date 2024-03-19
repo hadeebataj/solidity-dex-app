@@ -1,5 +1,17 @@
 {
     "11155111": {
+        "exchange": {
+            "address": "0x36B8E0C981047957F867FAaA24C5a3d9C3644892"
+        },
+        "mRUPC": {
+            "address": "0x26398c1A95B96A6114EE98b01A6197158DF676B6"
+        },
+        "mDai": {
+            "address": "0x3424c65cF5702B2EE4e587368460f3C8CF2e56ca"
+        },
+        "mWETH": {
+            "address": "0x7d8a2b6eCf18FF02A26A559b8d9a3db3213b143A"
+        },
         "explorerURL": "https://sepolia.etherscan.io/"
     },
     "31337": {
