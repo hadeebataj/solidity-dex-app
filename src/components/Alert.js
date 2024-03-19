@@ -7,7 +7,7 @@ const Alert = () => {
   const alertRef = useRef(null);
 
   const account = useSelector((state) => state.provider.account);
-  const network = useSelector((state) => state.provider.network);
+  const network = useSelector((state) => state.provider.chainId);
   const isPending = useSelector(
     (state) => state.exchange.transaction.isPending
   );
