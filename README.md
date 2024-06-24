@@ -1,8 +1,6 @@
 # Link: https://weathered-shadow-0881.on.fleek.co/
 
 # Notes to start
-
-
 CLI Commands
 `npm run start`
 `npx hardhat node`
